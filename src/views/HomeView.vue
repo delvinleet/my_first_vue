@@ -3,10 +3,14 @@
 		<div class="header">
 			to-do list
 			<div class="inputs">
-				<my-input v-model="task.title" placeholder="title..."/>
-				<my-input v-model="task.body" placeholder="body..."/>
+				<my-dialog v-model="dialogVisible">
+					task adding
+					<my-input style="margin-top: 5px;" v-model="task.title" placeholder="title..."/>
+					<my-input v-model="task.body" placeholder="body..."/>
+					<my-button @click="addTask">add</my-button>
+				</my-dialog>
 			</div>
-			<my-button @click="addTask">add task</my-button>
+			<my-button @click="showDialog">add task</my-button>
 		</div>
 		<task-item 
 			@removeTask="handleRemoveTask" 
@@ -21,9 +25,10 @@
 <script setup>
 import MyButton from '@/components/UI/MyButton.vue';
 import MyInput from '@/components/UI/MyInput.vue';
+import MyDialog from '@/components/UI/MyDialog.vue';
 import TaskItem from '@/components/TaskItem.vue';
-import { useTask } from '@/hooks/useTask.js'
-import { reactive } from 'vue';
+import { useTask } from '@/hooks/useTask.js';
+import { reactive, ref } from 'vue';
 
 const {tasks, createTask} = useTask()
 
@@ -33,10 +38,21 @@ const task = reactive({
 	isChecked: false
 })
 
+const dialogVisible = ref(false)
+
+const showDialog = () => {
+	dialogVisible.value = !dialogVisible.value
+}
+
 const addTask = () => {
-	createTask(task)
-	task.title = '';
-	task.body = '';
+	if (task.title == '') {
+		return
+	} else {
+		createTask(task);
+		task.title = '';
+		task.body = '';
+		dialogVisible.value = !dialogVisible.value
+	}
 }
 
 const handleRemoveTask = (id) => {
@@ -57,4 +73,11 @@ const handleRemoveTask = (id) => {
 	justify-content: space-between;
 	padding: 10px 5px;
 }
+
+@media (max-width: 1000px) {
+	.wrapper {
+		margin: 10px 0;
+	}
+}
+
 </style>

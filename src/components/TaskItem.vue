@@ -31,7 +31,7 @@ const {removeTask, toggleChecked} = useTask()
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 10px;
+    padding: 5px 5px;
     margin: 3px 0;
 }
 
@@ -42,6 +42,5 @@ const {removeTask, toggleChecked} = useTask()
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 17%;
 }
 </style>

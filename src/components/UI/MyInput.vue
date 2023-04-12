@@ -15,6 +15,6 @@ const handleInput = (event) => {
 
 <style scoped>
 .input {
-    margin: 0 5px;
+    margin: 0 5px 5px;
 }
 </style>
