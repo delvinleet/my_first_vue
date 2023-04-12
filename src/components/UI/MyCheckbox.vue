@@ -8,7 +8,6 @@
 import { ref, watch } from 'vue'
 
 const props = defineProps(['modelValue','state']);
-
 const emit = defineEmits(['update:modelValue']) ; 
 
 const value = ref(false);
@@ -19,7 +18,7 @@ watch(value, (val) => {
 })
 
 // watch(() => props.modelValue, (val) => {
-//     value.value = val;                       //спросить у Влада зачем это
+//     value.value = val;                       
 // })
 
 </script>

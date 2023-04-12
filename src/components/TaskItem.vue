@@ -17,12 +17,10 @@ import MyButton from '@/components/UI/MyButton.vue';
 import MyCheckbox from '@/components/UI/MyCheckbox.vue';
 import { ref } from 'vue'
 
-const checked = ref(false);
-
 const props = defineProps(['task', 'id', 'state'])
-
 const emit = defineEmits(['removeTask'])
 
+const checked = ref(false); 
 </script>
 
 <style scoped>

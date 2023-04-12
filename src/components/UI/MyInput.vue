@@ -5,7 +5,6 @@
 <script setup>
 
 const props = defineProps(['modelValue'])
-
 const emit = defineEmits(['update:modelValue'])
 
 const handleInput = (event) => {
