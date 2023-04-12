@@ -1,25 +1,16 @@
 <template>
     <div class="checkbox">
-        <input v-model="value" class="checkbox" type="checkbox">
+        <input 
+        :checked="props.modelValue" 
+        @click="emit('update:modelValue', !props.modelValue)" 
+        class="checkbox" type="checkbox">
     </div>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
 
-const props = defineProps(['modelValue','state']);
+const props = defineProps(['modelValue']);
 const emit = defineEmits(['update:modelValue']) ; 
-
-const value = ref(false);
-
-watch(value, (val) => {
-    emit("update:modelValue", val);
-    console.log(value);
-})
-
-// watch(() => props.modelValue, (val) => {
-//     value.value = val;                       
-// })
 
 </script>
 

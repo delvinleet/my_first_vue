@@ -11,10 +11,9 @@
 		<task-item 
 			@removeTask="handleRemoveTask" 
 			:task="task" 
-			v-for="(task, index) in taskList"
-			:state="task.state" 
+			v-for="(task, index) in tasks" 
 			:id="index" 
-			:key="index" 
+			:key="index"
 		/>
 	</div>
 </template>
@@ -23,28 +22,19 @@
 import MyButton from '@/components/UI/MyButton.vue';
 import MyInput from '@/components/UI/MyInput.vue';
 import TaskItem from '@/components/TaskItem.vue';
-import { reactive, watch } from 'vue';
-import { useTaskStore } from '@/stores/task';
-import { storeToRefs } from 'pinia';
+import { useTask } from '@/hooks/useTask.js'
+import { reactive } from 'vue';
 
-const taskStore = useTaskStore()
-
-const tasks = reactive([
-	{title: 'task1', body: 'description1', state: false},
-	{title: 'task2', body: 'description2', state: false},
-	{title: 'task3', body: 'description3', state: false},
-]);
-taskStore.taskList = tasks
-
-const {taskList} = storeToRefs(taskStore)
+const {tasks, createTask} = useTask()
 
 const task = reactive({
 	title: '',
 	body: '',
+	isChecked: false
 })
 
 const addTask = () => {
-	taskList.value.push({...task});
+	createTask(task)
 	task.title = '';
 	task.body = '';
 }

@@ -1,12 +1,14 @@
 <template>
-    <div class="task-item" :class="{completed: checked}">
+    <div class="task-item" :class="{completed: props.task.isChecked}">
         <div class="task-text">
             <div class="task-title">{{ props.task.title }}</div>
             <div class="task-body">{{ props.task.body }}</div>
         </div>
         <div class="func_btns">
-            <my-checkbox v-model="checked"></my-checkbox>
-            <my-button @click="emit('removeTask', id)">remove</my-button>
+            <my-checkbox :modelValue="props.task.isChecked" 
+            @update:modelValue="toggleChecked(id)" 
+            ></my-checkbox>
+            <my-button @click="removeTask(id)">remove</my-button>
         </div>
     </div>
 </template>
@@ -15,12 +17,12 @@
 
 import MyButton from '@/components/UI/MyButton.vue';
 import MyCheckbox from '@/components/UI/MyCheckbox.vue';
-import { ref } from 'vue'
+import { useTask } from '@/hooks/useTask';
 
-const props = defineProps(['task', 'id', 'state'])
-const emit = defineEmits(['removeTask'])
+const props = defineProps(['task', 'id']);
 
-const checked = ref(false); 
+const {removeTask, toggleChecked} = useTask()
+
 </script>
 
 <style scoped>
