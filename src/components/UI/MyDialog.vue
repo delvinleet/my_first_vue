@@ -25,15 +25,14 @@ const handleToggleDialog = (event) => {
     right: 0;
     background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
-    display: flex;
-    
+    display: flex;   
 }
 
 .dialog__content {
     margin: auto;
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: #262638;
     padding: 20px;
     border-radius: 10px;
     text-align: center;

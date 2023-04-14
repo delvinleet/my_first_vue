@@ -16,5 +16,9 @@ const handleInput = (event) => {
 <style scoped>
 .input {
     margin: 0 5px 5px;
+    background-color: #8381CD;
+    padding: 1px 5px;
+    color: white;
 }
+/* ::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.6); }; */
 </style>

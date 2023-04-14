@@ -5,20 +5,23 @@
 			<div class="inputs">
 				<my-dialog v-model="dialogVisible">
 					task adding
-					<my-input style="margin-top: 5px;" v-model="task.title" placeholder="title..."/>
-					<my-input v-model="task.body" placeholder="body..."/>
-					<my-button @click="addTask">add</my-button>
+					<my-input v-model="task.title" style="margin-top: 5px;" placeholder="title..."/>
+					<my-input v-model="task.body" placeholder="description..."/>
+					<my-button @click="addTask">create</my-button>
 				</my-dialog>
 			</div>
 			<my-button @click="showDialog">add task</my-button>
 		</div>
-		<task-item 
-			@removeTask="handleRemoveTask" 
-			:task="task" 
-			v-for="(task, index) in tasks" 
-			:id="index" 
-			:key="index"
-		/>
+		<div class="task_list" v-if="tasks.length > 0">
+			<task-item 
+				@removeTask="handleRemoveTask" 
+				:task="task" 
+				v-for="(task, index) in tasks" 
+				:id="index" 
+				:key="index"
+			/>
+		</div>
+		<div class="task_none" v-else>task list is empty</div>		
 	</div>
 </template>
 
@@ -39,7 +42,6 @@ const task = reactive({
 })
 
 const dialogVisible = ref(false)
-
 const showDialog = () => {
 	dialogVisible.value = !dialogVisible.value
 }
@@ -62,16 +64,27 @@ const handleRemoveTask = (id) => {
 </script>
 
 <style scoped>
+
 .wrapper {
 	margin: 10px 15%;
 }
 
 .header {
-	background-color: #A3A0FF;
+	background-color: #8381CD;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 10px 5px;
+	color: #ffffff;	
+	border-radius: 10px
+}
+
+.task_none {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 200px;	
+	color: #ffffff;
 }
 
 @media (max-width: 1000px) {

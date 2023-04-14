@@ -27,16 +27,20 @@ const {removeTask, toggleChecked} = useTask()
 
 <style scoped>
 .task-item {
-    border: 2px solid teal;
+    border: 2px solid #8381CD;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px 5px;
     margin: 3px 0;
+    transition: .2s;
+    color: #ffffff;
+    border-radius: 10px;
 }
 
 .completed {
-    background-color: greenyellow;
+    background-color: #2DAF5A;
+    transition: .2s;
 }
 .func_btns {
     display: flex;

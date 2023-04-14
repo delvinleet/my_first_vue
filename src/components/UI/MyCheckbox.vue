@@ -18,6 +18,6 @@ const emit = defineEmits(['update:modelValue']) ;
 .checkbox {
     width: 25px;
     height: 25px;
-    margin-right: 5px; 
+    margin-right: 5px;
 }
 </style>
