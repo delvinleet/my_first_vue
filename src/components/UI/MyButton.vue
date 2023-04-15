@@ -20,9 +20,8 @@
 }
 
 .btn:hover {
-    background-color: white;
+    background-color: #262638;
     transition: .15s;
-    border: 1px solid #8381CD;
 }
 .btn:active {
     background-color: #8381CD   ;

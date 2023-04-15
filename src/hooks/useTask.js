@@ -21,11 +21,24 @@ export const useTask = () => {
         localStorage.setItem('tasks', JSON.stringify(tasks))
     }
 
+    const handleEditTask = (id) => {
+        tasks[id].taskShow = !tasks[id].taskShow
+    }
+
+    const handleChangeTask = (id, newTask) => {
+        tasks[id] = newTask
+        handleEditTask(id)
+        localStorage.setItem('tasks', JSON.stringify(tasks))
+
+}
+
     return {
         tasks: readonly(tasks),
         createTask,
         removeTask,
-        toggleChecked
+        toggleChecked,
+        handleEditTask,
+        handleChangeTask
     }
 }
 

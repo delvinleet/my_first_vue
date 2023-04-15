@@ -14,11 +14,15 @@
 		</div>
 		<div class="task_list" v-if="tasks.length > 0">
 			<task-item 
-				@removeTask="handleRemoveTask" 
-				:task="task" 
-				v-for="(task, index) in tasks" 
+				@removeTask="handleRemoveTask"
+				@editTask="handleEditTask"
+				@saveTask="handleSaveTask"
+				v-for="(task, index) in tasks"
 				:id="index" 
 				:key="index"
+				:task="task"
+				:taskShow="task.taskShow"
+				
 			/>
 		</div>
 		<div class="task_none" v-else>task list is empty</div>		
@@ -33,12 +37,13 @@ import TaskItem from '@/components/TaskItem.vue';
 import { useTask } from '@/hooks/useTask.js';
 import { reactive, ref } from 'vue';
 
-const {tasks, createTask} = useTask()
+const {tasks, createTask, handleEditTask, handleSaveTask} = useTask()
 
 const task = reactive({
 	title: '',
 	body: '',
-	isChecked: false
+	isChecked: false,
+	taskShow: true,
 })
 
 const dialogVisible = ref(false)

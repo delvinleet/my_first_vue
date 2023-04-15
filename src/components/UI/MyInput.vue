@@ -20,5 +20,5 @@ const handleInput = (event) => {
     padding: 1px 5px;
     color: white;
 }
-/* ::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.6); }; */
+::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.6); }
 </style>
