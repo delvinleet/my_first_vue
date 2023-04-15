@@ -9,7 +9,8 @@
         <div class="func_btns">
             <my-checkbox 
             :modelValue="props.task.isChecked" 
-            @update:modelValue="toggleChecked(id)" 
+            @update:modelValue="toggleChecked(id)"
+            @click="handleToggleCheckedSort" 
             ></my-checkbox>
 
             <my-button 
@@ -46,7 +47,7 @@ import { useTask } from '@/hooks/useTask';
 import { ref, reactive, watch } from 'vue'
 
 const props = defineProps(['task', 'id', 'taskShow']);
-const emit = defineEmits(['update:modelValue', 'editTask', 'saveTask'])
+const emit = defineEmits(['update:modelValue', 'editTask', 'saveTask', 'toggleCheckedSort'])
 
 const {removeTask, toggleChecked, handleChangeTask} = useTask()
 
@@ -59,8 +60,8 @@ const editTask = (id) => {
     emit('editTask', id)
 }
 
-const saveTask = (id) => {
-    emit('saveTask', id)
+const handleToggleCheckedSort = () => {
+    emit('toggleCheckedSort')
 }
 
 watch(() => props.task, (value) => {

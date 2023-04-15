@@ -13,10 +13,12 @@
 			<my-button @click="showDialog">add task</my-button>
 		</div>
 		<div class="task_list" v-if="tasks.length > 0">
-			<task-item 
+			<transition-group name="task-list">
+				<task-item 
 				@removeTask="handleRemoveTask"
 				@editTask="handleEditTask"
 				@saveTask="handleSaveTask"
+				@toggleCheckedSort="checkedSort"
 				v-for="(task, index) in tasks"
 				:id="index" 
 				:key="index"
@@ -24,6 +26,8 @@
 				:taskShow="task.taskShow"
 				
 			/>
+			</transition-group>
+			
 		</div>
 		<div class="task_none" v-else>task list is empty</div>		
 	</div>
@@ -35,9 +39,9 @@ import MyInput from '@/components/UI/MyInput.vue';
 import MyDialog from '@/components/UI/MyDialog.vue';
 import TaskItem from '@/components/TaskItem.vue';
 import { useTask } from '@/hooks/useTask.js';
-import { reactive, ref } from 'vue';
+import { reactive, ref, watch } from 'vue';
 
-const {tasks, createTask, handleEditTask, handleSaveTask} = useTask()
+const {tasks, createTask, handleEditTask, handleSaveTask, checkedSort} = useTask()
 
 const task = reactive({
 	title: '',

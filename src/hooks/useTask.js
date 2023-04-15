@@ -29,16 +29,21 @@ export const useTask = () => {
         tasks[id] = newTask
         handleEditTask(id)
         localStorage.setItem('tasks', JSON.stringify(tasks))
+    }
 
-}
+    const checkedSort = () => {
+        tasks.sort((task1, task2) => task1.isChecked - task2.isChecked)
+        localStorage.setItem('tasks', JSON.stringify(tasks))
+    }
 
     return {
-        tasks: readonly(tasks),
+        tasks: tasks,
         createTask,
         removeTask,
         toggleChecked,
         handleEditTask,
-        handleChangeTask
+        handleChangeTask,
+        checkedSort
     }
 }
 

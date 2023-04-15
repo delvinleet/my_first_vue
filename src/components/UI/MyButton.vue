@@ -14,7 +14,6 @@
     border: none;
     padding: 5px;
     border: 1px solid white;
-    min-width: 100px;
     color: #ffffff;
     border-radius: 10px;
 }
